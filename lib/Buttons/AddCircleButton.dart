@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddCircleButton extends StatelessWidget{
-  const AddCircleButton({super.key});
+  final Function buttonHandler;
+  const AddCircleButton({super.key, required this.buttonHandler});
 
   @override
   Widget build(BuildContext context){
@@ -13,12 +14,14 @@ class AddCircleButton extends StatelessWidget{
                 color: Colors.amberAccent,
                 child: InkWell(
                   splashColor: Colors.green,
-                  onTap: (){},
+                  onTap: (){
+                    buttonHandler(1);
+                  },
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const <Widget>[
-                        Icon(Icons.square),
-                        Text("Square"),
+                        Icon(Icons.circle),
+                        Text("Circle"),
                   ],
                 )
             )
