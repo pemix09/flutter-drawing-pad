@@ -15,9 +15,6 @@ class PaintingTools extends StatefulWidget{
 class _PaintingToolsState extends State<PaintingTools>{
   late int selectedTool;
 
-  void changeSelectedTool(int input) {
-    selectedTool = input;
-  }
 
   @override
   Widget build(BuildContext context){
@@ -25,7 +22,7 @@ class _PaintingToolsState extends State<PaintingTools>{
       child: Row(
         textDirection: TextDirection.ltr,
           children: <Widget>[
-            AddCircleButton(buttonHandler: changeSelectedTool),
+            AddCircleButton(),
             AddSquareButton(),
             AddLineButton(),
             ClearButton()
