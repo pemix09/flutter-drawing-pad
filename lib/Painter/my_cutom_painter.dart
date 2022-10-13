@@ -14,16 +14,9 @@ class MyCustomPainter extends CustomPainter {
   // 2
   @override
   void paint(Canvas canvas, Size size) {
-    // 1
-    Paint paint = AppConfig.of(context)!.toolService.paint;
-    Offset position = Offset(0, 0);
-
-    if (AppConfig.of(context)!.toolService.selectedButton == AddCircleButton) {
-      canvas.drawCircle(position, 10, paint);
-    } else if (AppConfig.of(context)!.toolService.selectedButton ==
-        AddSquareButton) {
-      canvas.drawRect(Rect.fromLTWH(20, 40, 100, 100), paint);
-    }
+    canvas.drawRect(
+        Rect.fromCenter(center: Offset(50, 50), width: 50, height: 50),
+        Paint());
   }
 
   // 4
@@ -31,4 +24,10 @@ class MyCustomPainter extends CustomPainter {
   bool shouldRepaint(MyCustomPainter oldDelegate) {
     return false;
   }
+
+  // @override
+  // bool hitTest(Offset position) {
+  //   // _path - is the same one we built in paint() method;
+  //   return _path.contains(position);
+  // }
 }

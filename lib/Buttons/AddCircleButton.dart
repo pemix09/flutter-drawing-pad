@@ -8,17 +8,17 @@ class AddCircleButton extends StatefulWidget {
   const AddCircleButton({required Function this.reRenderParent, super.key});
 
   @override
-  State<StatefulWidget> createState() => _AddCircleState(reRenderParentState: reRenderParent);
+  State<StatefulWidget> createState() =>
+      _AddCircleState(reRenderParentState: reRenderParent);
 }
 
-class _AddCircleState extends State<AddCircleButton>{
+class _AddCircleState extends State<AddCircleButton> {
   final Function reRenderParentState;
 
   _AddCircleState({required Function this.reRenderParentState});
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox.fromSize(
         size: const Size(56, 56),
         child: ClipOval(
@@ -27,7 +27,9 @@ class _AddCircleState extends State<AddCircleButton>{
                 child: InkWell(
                     splashColor: Colors.green,
                     onTap: () {
-                      AppConfig.of(context)?.toolService.ChangleSelectedButton(AddCircleButton);
+                      AppConfig.of(context)
+                          ?.toolService
+                          .ChangleSelectedButton(AddCircleButton);
                       reRenderParentState(AddCircleButton);
                     },
                     child: Column(
