@@ -2,23 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hello_world/app_config.dart';
 
-class AddCircleButton extends StatelessWidget {
-  final String widgetName = 'Circle';
+class AddCircleButton extends StatefulWidget {
+  final Function reRenderParent;
 
-  const AddCircleButton({super.key});
+  const AddCircleButton({required Function this.reRenderParent, super.key});
+
+  @override
+  State<StatefulWidget> createState() => _AddCircleState(reRenderParentState: reRenderParent);
+}
+
+class _AddCircleState extends State<AddCircleButton>{
+  final Function reRenderParentState;
+
+  _AddCircleState({required Function this.reRenderParentState});
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox.fromSize(
         size: const Size(56, 56),
         child: ClipOval(
             child: Material(
-                color: Colors.amberAccent,
+                color: _thisButtonColour(context),
                 child: InkWell(
                     splashColor: Colors.green,
                     onTap: () {
-                      print(widgetName + 'was clicked');
-                      AppConfig.of(context)?.toolService.ChangleSelectedTool(1);
+                      AppConfig.of(context)?.toolService.ChangleSelectedButton(AddCircleButton);
+                      reRenderParentState(AddCircleButton);
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -27,5 +37,13 @@ class AddCircleButton extends StatelessWidget {
                         Text("Circle"),
                       ],
                     )))));
+  }
+
+  Color _thisButtonColour(BuildContext context) {
+    if (AppConfig.of(context)?.toolService.selectedButton == AddCircleButton) {
+      return Colors.red;
+    } else {
+      return Colors.amberAccent;
+    }
   }
 }

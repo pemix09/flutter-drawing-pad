@@ -15,5 +15,7 @@ class AppConfig extends InheritedWidget {
 
   //method below can modify other elements of app to update, for example to changle selection of tool
   @override
-  bool updateShouldNotify(_) => false;
+  bool updateShouldNotify(AppConfig oldConfig) {
+    return toolService.selectedButton != oldConfig.toolService.selectedButton;
+  }
 }

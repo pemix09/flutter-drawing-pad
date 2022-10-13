@@ -1,12 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:hello_world/Buttons/AddCircleButton.dart';
+
 class ToolService {
-  int selectedTool = 1;
+  Type selectedButton = AddCircleButton;
+  Paint paint = Paint()
+    ..style = PaintingStyle.stroke
+    ..color = Colors.brown
+    ..strokeWidth = 4.0;
 
   //default tool
-  ToolService() {
-    selectedTool = 1;
-  }
+  ToolService() {}
 
-  void ChangleSelectedTool(int _newSelection) {
-    selectedTool = _newSelection;
+  void ChangleSelectedButton(Type newSelectedButton) {
+    selectedButton = newSelectedButton;
   }
 }

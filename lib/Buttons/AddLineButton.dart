@@ -2,8 +2,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddLineButton extends StatelessWidget{
-  const AddLineButton({super.key});
+import '../app_config.dart';
+
+class AddLineButton extends StatefulWidget{
+  final Function reRenderParent;
+
+  const AddLineButton({required Function this.reRenderParent, super.key});
+
+
+
+  @override
+  State<StatefulWidget> createState() => _AddLineButtonState(reRenderParent: this.reRenderParent);
+
+}
+
+class _AddLineButtonState extends State<AddLineButton>{
+  final Function reRenderParent;
+
+  _AddLineButtonState({required Function this.reRenderParent});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +27,13 @@ class AddLineButton extends StatelessWidget{
         size: const Size(56, 56),
         child: ClipOval(
             child: Material(
-                color: Colors.amberAccent,
+                color: _thisButtonColour(context),
                 child: InkWell(
                     splashColor: Colors.green,
-                    onTap: (){},
+                    onTap: (){
+                      AppConfig.of(context)?.toolService.ChangleSelectedButton(AddLineButton);
+                      reRenderParent(AddLineButton);
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const <Widget>[
@@ -26,5 +45,13 @@ class AddLineButton extends StatelessWidget{
             )
         )
     );
+  }
+
+  Color _thisButtonColour(BuildContext context) {
+    if (AppConfig.of(context)?.toolService.selectedButton == AddLineButton) {
+      return Colors.red;
+    } else {
+      return Colors.amberAccent;
+    }
   }
 }
