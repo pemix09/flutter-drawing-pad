@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hello_world/Services/canvas_service.dart';
 import 'Services/tool_service.dart';
 
 class AppConfig extends InheritedWidget {
   final ToolService toolService;
+  final CanvasService canvasService;
 
   const AppConfig(
-      {Key? key, required Widget child, required ToolService this.toolService})
+      {Key? key, required Widget child, required ToolService this.toolService, required CanvasService this.canvasService})
       : super(key: key, child: child);
 
   //Method below will go app the stack and will search for sonfig, and it will return it
